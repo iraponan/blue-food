@@ -24,74 +24,49 @@
  *******************************************************************************
  -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>BlueFood</title>
-		<meta charset="ISO-8859-1">
-		<link rel="stylesheet" type="text/css" href="css/bf_estiloSistema.css">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{css/bf_estiloSistema.css}">
 	</head>
 	<body>
 		<header>
 			<div id="divLogotipoSistema">
 				<span id="spanAuxiliarDeAlinhamentoVertical"></span>
 				<a href="/">
-					<img src="images/bf_logotipoSistema.png" id="imgLogotipoSistema">
+					<img th:src="@{images/bf_logotipoSistema.png}" id="imgLogotipoSistema">
 				</a>
-			</div>
-			<div id="divUsuarioLogado">
-				Olá Nome do Usuário!
 			</div>
 		</header>
 		<br><br>
-		<!-- Cabeçalho - Fim -->
-		
+		<!-- CabeÃ§alho - Fim -->
+
 		<div>
-			<h1>Relatório de Itens</h1>
-			<fieldset id="fieldsetFiltros">
-				<legend>Filtros</legend>
-				<label for="numero">Item: </label><br>	
-				<input type="text" name="numero" id="numero"><br>
-				<label for="inicio">Início: </label><br>	
-				<input type="date" name="inicio" id="inicio"><br>
-				<label for="fim">Fim: </label><br>	
-				<input type="date" name="fim" id="fim"><br>
-				<input type="button" value="Buscar">
-			</fieldset>
+			<img th:src="@{images/bf_iconeUsuario.png}" id="imgIconeUsuario">
+			<h1>AutenticaÃ§Ã£o</h1>
+			<form method="post" action="">
+				<fieldset>
+					<input type="text" name="email" placeholder="E-mail...">
+					<input type="password" name="senha" placeholder="Senha...">
+					<input type="button" value="Entrar" onClick="location.href = 'clienteHome.html';">
+				</fieldset>
+			</form>
+			<br>
+			
+			<div id="mensagemDeErro">
+				Aqui vai um exemplo de mensagem de erro
+			</div><br>
+			
+			<input type="button" value="Gostaria de criar a minha conta de usuÃ¡rio" onClick="location.href='clienteCadastro.html';">
+			<br>
+			<input type="button" value="Gostaria de criar a minha conta de restaurante" onClick="location.href='restauranteCadastro.html';">
 		</div>
-		<br><br>
 		
-		<table>
-			<tr>
-				<th>Item</th>
-				<th>Quantidade</th>
-				<th>Faturamento</th>
-			</tr>
-			<tr>
-				<td>Hamburguer</td>
-				<td>25</td>
-				<td>R$ 355,00</td>
-			</tr>
-			<tr>
-				<td>Pizza</td>
-				<td>134</td>
-				<td>R$ 1.256,00</td>
-			</tr>
-			<tr>
-				<td>Salada</td>
-				<td>12</td>
-				<td>R$ 321,00</td>
-			</tr>
-			<tr>
-				<td>Refrigerante</td>
-				<td>155</td>
-				<td>R$ 452,20</td>
-			</tr>
-		</table>
-		<br><br>
 
-		<input type="button" value="Voltar" onClick="location.href='restauranteHome.html';">
 
-		<!-- Rodapé - Início -->
+		<!-- RodapÃ© - InÃ­cio -->
 		<br><br>
 	</body>
 </html>
