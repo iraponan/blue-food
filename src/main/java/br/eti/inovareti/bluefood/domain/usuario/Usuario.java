@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
     @Email(message = "O e-mail é inválido.")
     private String email;
 
-    @NotBlank(message = "A senha não pode ser vazio.")
+    @NotBlank(message = "A senha não pode ser vazia.")
     @Size(max = 80, message = "A senha é muito grande.")
     private String senha;
 
