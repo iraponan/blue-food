@@ -20,6 +20,7 @@ public class PublicController {
     @GetMapping(path = "new")
     public String newCliente(Model model) {
         model.addAttribute("cliente", new Cliente());
+        ControllerHelper.setEditMode(model, true);
         return "cliente-cadastro";
     }
 
