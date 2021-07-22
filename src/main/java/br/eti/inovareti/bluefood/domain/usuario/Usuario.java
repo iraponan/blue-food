@@ -1,5 +1,6 @@
 package br.eti.inovareti.bluefood.domain.usuario;
 
+import br.eti.inovareti.bluefood.util.StringUtils;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,4 +40,8 @@ public class Usuario implements Serializable {
     @Pattern(regexp = "[0-9]{10,11}", message = "O telefone possuí formato inválido.")
     @Column(length = 11, nullable = false)
     private String telefone;
+
+    public void encryptyPassword() {
+        this.senha = StringUtils.encrypt(this.senha);
+    }
 }

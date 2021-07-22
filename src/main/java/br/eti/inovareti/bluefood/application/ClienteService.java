@@ -15,6 +15,12 @@ public class ClienteService {
         if (!validateEmail(cliente.getEmail(), cliente.getId())) {
             throw new ValidationException("O e-mail informado já pertence a outro usuário.");
         }
+        if (cliente.getId() != null) {
+            Cliente clienteDb = clienteRepository.findById(cliente.getId()).orElseThrow();
+            cliente.setSenha(cliente.getSenha());
+        } else {
+            cliente.encryptyPassword();
+        }
         clienteRepository.save(cliente);
     }
 
