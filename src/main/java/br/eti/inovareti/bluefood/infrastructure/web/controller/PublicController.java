@@ -1,6 +1,7 @@
 package br.eti.inovareti.bluefood.infrastructure.web.controller;
 
 import br.eti.inovareti.bluefood.application.ClienteService;
+import br.eti.inovareti.bluefood.application.ValidationException;
 import br.eti.inovareti.bluefood.domain.cliente.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,12 @@ public class PublicController {
     @PostMapping(path = "save")
     public String saveCliente(@ModelAttribute("cliente") @Valid Cliente cliente, Errors errors, Model model) {
         if (!errors.hasErrors()) {
-            clienteService.saveCliente(cliente);
-            model.addAttribute("msg", "Cliente gravado com sucesso!");
+            try {
+                clienteService.saveCliente(cliente);
+                model.addAttribute("msg", "Cliente gravado com sucesso!");
+            } catch (ValidationException e) {
+                errors.rejectValue("email", null, e.getMessage());
+            }
         }
 
         ControllerHelper.setEditMode(model, false);
