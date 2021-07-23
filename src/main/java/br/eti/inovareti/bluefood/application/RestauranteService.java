@@ -3,7 +3,9 @@ package br.eti.inovareti.bluefood.application;
 import br.eti.inovareti.bluefood.domain.restaurante.Restaurante;
 import br.eti.inovareti.bluefood.domain.restaurante.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RestauranteService {
 
     @Autowired
@@ -14,7 +16,15 @@ public class RestauranteService {
             throw new ValidationException("O e-mail informado já pertence a outro usuário.");
         }
 
-        restauranteRepository.save(restaurante);
+        if (restaurante.getId() != null) {
+            Restaurante restauranteDb = restauranteRepository.findById(restaurante.getId()).orElseThrow();
+            restaurante.setSenha(restauranteDb.getSenha());
+        } else {
+            restaurante.encryptyPassword();
+            restaurante = restauranteRepository.save(restaurante);
+            restaurante.setLogotipoFileName();
+            //TODO: Fazer a parte do Upload.
+        }
     }
 
     private boolean validateEmail(String email, Integer id) {

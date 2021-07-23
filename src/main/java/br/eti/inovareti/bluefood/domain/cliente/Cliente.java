@@ -18,8 +18,8 @@ import javax.validation.constraints.Pattern;
 public class Cliente extends Usuario {
 
     @NotBlank(message = "O CPF não pode ser vazio.")
-    @Pattern(regexp = "[0-9]{11}", message = "O CPF possuí formato inválido.")
-    //@CPF
+    //@Pattern(regexp = "[0-9]{11}", message = "O CPF possuí formato inválido.")
+    @CPF(message = "O CPF possuí formato inválido.")
     @Column(length = 11, nullable = false)
     private String cpf;
 

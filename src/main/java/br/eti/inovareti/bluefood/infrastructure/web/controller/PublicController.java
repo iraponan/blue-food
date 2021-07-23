@@ -1,6 +1,7 @@
 package br.eti.inovareti.bluefood.infrastructure.web.controller;
 
 import br.eti.inovareti.bluefood.application.ClienteService;
+import br.eti.inovareti.bluefood.application.RestauranteService;
 import br.eti.inovareti.bluefood.application.ValidationException;
 import br.eti.inovareti.bluefood.domain.cliente.Cliente;
 import br.eti.inovareti.bluefood.domain.restaurante.CategoriaRestaurante;
@@ -24,6 +25,9 @@ public class PublicController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private RestauranteService restauranteService;
 
     @Autowired
     private CategoriaRestauranteRepository categoriaRestauranteRepository;
@@ -56,5 +60,20 @@ public class PublicController {
 
         ControllerHelper.setEditMode(model, false);
         return "cliente-cadastro";
+    }
+
+    @PostMapping(path = "restaurante/save")
+    public String saveRestaurante(@ModelAttribute("restaurante") @Valid Restaurante restaurante, Errors errors, Model model) {
+        if (!errors.hasErrors()) {
+            try {
+                restauranteService.saveRestaurante(restaurante);
+                model.addAttribute("msg", "Restaurante gravado com sucesso!");
+            } catch (ValidationException e) {
+                errors.rejectValue("email", null, e.getMessage());
+            }
+        }
+
+        ControllerHelper.setEditMode(model, false);
+        return "restaurante-cadastro";
     }
 }

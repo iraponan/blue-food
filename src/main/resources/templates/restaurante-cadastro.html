@@ -58,7 +58,7 @@
 					<br /><br />
 
 					<label for="logotipo">Logotipo: </label><br>
-					<input type="file" id="logotipo" name="logotipo" placeholder="Selecionar..."><br><br>
+					<input type="file" id="logotipo" name="logotipo" placeholder="Selecionar..." th:field="*{logotipoFile}"><br /><br />
 
 					<label for="categoria">Categoria de comida: </label><br />
 					<select name="categoria" id="categoria" multiple="multiple" th:field="*{categorias}" style="height: 90px;" th:classappend="${#fields.hasErrors('categorias')} ? 'inputError' : ''">
