@@ -1,6 +1,7 @@
 package br.eti.inovareti.bluefood.domain.restaurante;
 
 import br.eti.inovareti.bluefood.domain.usuario.Usuario;
+import br.eti.inovareti.bluefood.infrastructure.web.validator.UploadConstraint;
 import br.eti.inovareti.bluefood.util.FileType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Restaurante extends Usuario {
     @Size(max = 80)
     private String logotipo;
 
+    @UploadConstraint(acceptedTypes = {FileType.PNG, FileType.JPG}, message = "O arquivo de imagem não é um arquivo de imagem PNG ou JPG.")
     private transient MultipartFile logotipoFile;
 
     @NotNull(message = "A taxa de entrega não pode ser vazia.")
