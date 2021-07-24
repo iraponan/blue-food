@@ -11,6 +11,9 @@ public class RestauranteService {
     @Autowired
     private RestauranteRepository restauranteRepository;
 
+    @Autowired
+    private ImageService imageService;
+
     public void saveRestaurante(Restaurante restaurante) throws ValidationException {
         if (!validateEmail(restaurante.getEmail(), restaurante.getId())) {
             throw new ValidationException("O e-mail informado já pertence a outro usuário.");
@@ -23,7 +26,7 @@ public class RestauranteService {
             restaurante.encryptyPassword();
             restaurante = restauranteRepository.save(restaurante);
             restaurante.setLogotipoFileName();
-            //TODO: Fazer a parte do Upload.
+            imageService.uploadLogotipo(restaurante.getLogotipoFile(), restaurante.getLogotipo());
         }
     }
 

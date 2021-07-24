@@ -1,6 +1,7 @@
 package br.eti.inovareti.bluefood.domain.restaurante;
 
 import br.eti.inovareti.bluefood.domain.usuario.Usuario;
+import br.eti.inovareti.bluefood.util.FileType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,7 +52,6 @@ public class Restaurante extends Usuario {
         if (this.getId() == null) {
             throw new IllegalStateException("É preciso primeiro gravar o registro.");
         }
-        //TODO: Trocar forma de ler a extenção.
-        this.logotipo = String.format("%04d-logo.%s", this.getId(), "png");
+        this.logotipo = String.format("%04d-logo.%s", this.getId(), FileType.of(logotipoFile.getContentType()).getExtension());
     }
 }
