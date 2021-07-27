@@ -1,4 +1,4 @@
-package br.eti.inovareti.bluefood.application;
+package br.eti.inovareti.bluefood.application.service;
 
 import br.eti.inovareti.bluefood.util.IOUtils;
 import org.springframework.beans.factory.annotation.Value;

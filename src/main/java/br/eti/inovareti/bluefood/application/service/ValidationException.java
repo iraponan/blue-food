@@ -1,4 +1,4 @@
-package br.eti.inovareti.bluefood.application;
+package br.eti.inovareti.bluefood.application.service;
 
 public class ValidationException extends Exception {
 

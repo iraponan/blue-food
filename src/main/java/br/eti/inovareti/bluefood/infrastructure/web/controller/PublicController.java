@@ -1,10 +1,9 @@
 package br.eti.inovareti.bluefood.infrastructure.web.controller;
 
-import br.eti.inovareti.bluefood.application.ClienteService;
-import br.eti.inovareti.bluefood.application.RestauranteService;
-import br.eti.inovareti.bluefood.application.ValidationException;
+import br.eti.inovareti.bluefood.application.service.ClienteService;
+import br.eti.inovareti.bluefood.application.service.RestauranteService;
+import br.eti.inovareti.bluefood.application.service.ValidationException;
 import br.eti.inovareti.bluefood.domain.cliente.Cliente;
-import br.eti.inovareti.bluefood.domain.restaurante.CategoriaRestaurante;
 import br.eti.inovareti.bluefood.domain.restaurante.CategoriaRestauranteRepository;
 import br.eti.inovareti.bluefood.domain.restaurante.Restaurante;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping(path = "public")
